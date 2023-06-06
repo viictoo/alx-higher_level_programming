@@ -12,8 +12,18 @@ listint_t *insert_node(listint_t **head, int number)
 {
 	listint_t *swap = NULL, *check = NULL, *current = NULL;
 
-	if (!*head || !head)
+	if (!head)
 		return (NULL);
+	if ((*head) == NULL)
+	{
+		swap = malloc(sizeof(listint_t));
+		if (!swap)
+			return (NULL);
+		swap->n = number;
+		swap->next = NULL;
+		(*head) = swap;
+		return (swap);
+	}
 	if ((*head)->next == NULL || (*head)->n > number)
 	{
 		swap = malloc(sizeof(listint_t));
