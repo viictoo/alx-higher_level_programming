@@ -10,7 +10,7 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *swap, *temp;
+	listint_t *swap, *temp, *current;
 
 	if (!*head)
 		return (NULL);
@@ -24,14 +24,15 @@ listint_t *insert_node(listint_t **head, int number)
 		(*head)->next = swap;
 		return (swap);
 	}
-	for (swap = *head; swap->next, swap->n < number; swap = swap->next)
+	for (swap = *head; swap && swap->n < number;
+			current = swap, swap = swap->next)
 	{
 	}
 	temp = malloc(sizeof(listint_t));
-	if (!swap)
+	if (!temp)
 		return (NULL);
 	temp->n = number;
-	temp->next = swap->next;
-	swap->next = temp;
+	temp->next = swap;
+	current->next = temp;
 	return (temp);
 }
