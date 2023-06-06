@@ -12,5 +12,5 @@ if dig >= 0:
         print("and is 0")
 elif dig < 0:
     dig = dig * -1
-    print('Last digit of {} is -{} and is less than 6 and not 0'.format(number, dig % 10))
-
+    print('Last digit of {} is -{} and is less than 6 and not 0'
+          .format(number, dig % 10))
