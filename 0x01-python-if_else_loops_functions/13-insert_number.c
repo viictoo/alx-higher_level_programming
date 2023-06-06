@@ -10,29 +10,31 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *swap, *temp, *current;
+	listint_t *swap = NULL, *check = NULL, *current = NULL;
 
-	if (!*head)
+	if (!*head || !head)
 		return (NULL);
-	if ((*head)->next == NULL)
+	if ((*head)->next == NULL || (*head)->n > number)
 	{
 		swap = malloc(sizeof(listint_t));
 		if (!swap)
 			return (NULL);
 		swap->n = number;
-		swap->next = NULL;
-		(*head)->next = swap;
+		swap->next = (*head);
+		(*head) = swap;
 		return (swap);
 	}
-	for (swap = current = *head; swap && swap->n < number;
-			current = swap, swap = swap->next)
+	swap = malloc(sizeof(listint_t));
+	if (!swap)
+		return (NULL);
+	swap->n = number;
+
+	for (check = current = *head; check && check->n < number;
+			current = check, check = check->next)
 	{
 	}
-	temp = malloc(sizeof(listint_t));
-	if (!temp)
-		return (NULL);
-	temp->n = number;
-	temp->next = swap;
-	current->next = temp;
-	return (temp);
+	swap->next = current->next;
+	current->next = swap;
+
+	return (swap);
 }
