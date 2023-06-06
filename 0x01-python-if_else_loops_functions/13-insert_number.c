@@ -24,7 +24,7 @@ listint_t *insert_node(listint_t **head, int number)
 		(*head)->next = swap;
 		return (swap);
 	}
-	for (swap = *head; swap && swap->n < number;
+	for (swap = current = *head; swap && swap->n < number;
 			current = swap, swap = swap->next)
 	{
 	}
