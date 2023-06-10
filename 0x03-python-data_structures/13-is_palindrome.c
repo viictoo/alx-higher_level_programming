@@ -12,36 +12,33 @@ int is_palindrome(listint_t **head)
 	listint_t *hare, *kobe;
 	int len = 0, count = 0;
 
-	if (!((*head)->next) || !(*head))
+	if (!((*head)->next) || !(*head) || !head)
 		return (1);
 	hare = kobe = *head;
-	while (kobe)
+
+	while (hare && hare->next)
 	{
 		kobe = kobe->next;
 		hare = hare->next->next;
-
+		len++;
 		if (hare == kobe)
 			return (0);
-
-		if (hare == NULL)
-		{
-			while (kobe)
-			{
-				hare = *head;
-				count = len;
-				while (count > 0)
-				{
-					hare = hare->next;
-					count--;
-				}
-				len--;
-				if (hare->n != kobe->n)
-					return (0);
-				kobe = kobe->next;
-			}
-			return (1);
-		}
-		len++;
 	}
-	return (0);
+	if (len % 2 != 0)
+		len--;
+	while (kobe)
+	{
+		hare = *head;
+		len--;
+		count = len;
+		while (count >= 0)
+		{
+			hare = hare->next;
+			count--;
+		}
+		if (hare->n != kobe->n)
+			return (0);
+		kobe = kobe->next;
+	}
+	return (1);
 }
