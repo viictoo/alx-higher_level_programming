@@ -12,7 +12,9 @@ int is_palindrome(listint_t **head)
 	listint_t *kobe;
 	int len = 0, i, j, *arr = NULL;
 
-	if (!((*head)->next) || !(*head))
+	if (!head)
+		return (0);
+	if (!(*head))
 		return (1);
 
 	kobe = *head;
@@ -32,7 +34,6 @@ int is_palindrome(listint_t **head)
 		arr[i] = kobe->n;
 		kobe = kobe->next;
 	}
-
 	i = 0;
 	j = len - 1;
 	while (i < j)
@@ -45,7 +46,6 @@ int is_palindrome(listint_t **head)
 		i++;
 		j--;
 	}
-
 	free(arr);
 	return (1);
 }
