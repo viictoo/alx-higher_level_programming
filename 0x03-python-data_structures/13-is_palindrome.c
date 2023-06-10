@@ -12,7 +12,7 @@ int is_palindrome(listint_t **head)
 	listint_t *hare, *kobe;
 	int len = 0, count = 0;
 
-	if ((*head)->next == NULL)
+	if ((*head)->next || !(*head))
 		return (1);
 	hare = kobe = *head;
 	while (kobe)

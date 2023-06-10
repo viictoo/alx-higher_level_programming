@@ -1,12 +1,6 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
-    if ((matrix) == [[]]):
-        print()
-        return
     for row in matrix:
-        for i in range(len(matrix)):
-            spec = ' '
-            if i == len(matrix) - 1:
-                spec = ''
-            print(f'{row[i]}', end=spec)
+        for i in row:
+            print('{:d}'.format(i), end=' ' if i != row[-1] else '')
         print()
