@@ -12,22 +12,25 @@ int is_palindrome(listint_t **head)
 	listint_t *kobe;
 	int len = 0, i, j, *arr = NULL;
 
-	if (!head)
-		return (0);
 	if (!((*head)->next) || !(*head))
 		return (1);
 
 	kobe = *head;
 	while (kobe)
 	{
-		arr = realloc(arr, sizeof(int) * (len + 1));
-		if (arr == NULL)
-		{
-			exit(1);
-		}
-		arr[len] = kobe->n;
-		kobe = kobe->next;
 		len++;
+		kobe = kobe->next;
+	}
+	arr = malloc(sizeof(int) * len);
+	if (arr == NULL)
+	{
+		exit(1);
+	}
+	kobe = *head;
+	for (i = 0; i < len; i++)
+	{
+		arr[i] = kobe->n;
+		kobe = kobe->next;
 	}
 
 	i = 0;
