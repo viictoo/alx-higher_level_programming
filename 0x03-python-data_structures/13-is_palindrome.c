@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
@@ -9,36 +9,34 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *hare, *kobe;
-	int len = 0, count = 0;
+	listint_t *kobe;
+	int len = 0, i, j, *arr;
 
-	if (!((*head)->next) || !(*head) || !head)
+	if (!head)
+		return (0);
+	if (!((*head)->next) || !(*head))
 		return (1);
-	hare = kobe = *head;
 
-	while (hare && hare->next)
-	{
-		kobe = kobe->next;
-		hare = hare->next->next;
-		len++;
-		if (hare == kobe)
-			return (0);
-	}
-	if (len % 2 != 0)
-		len--;
+	kobe = *head;
 	while (kobe)
 	{
-		hare = *head;
-		len--;
-		count = len;
-		while (count >= 0)
-		{
-			hare = hare->next;
-			count--;
-		}
-		if (hare->n != kobe->n)
-			return (0);
+		arr = realloc(arr, sizeof(int) * len);
+		arr[len] = kobe->n;
 		kobe = kobe->next;
+		len++;
 	}
+	i = 0;
+	j = len - 1;
+	while (i < j)
+	{
+		if (arr[i] != arr[j])
+		{
+			free(arr);
+			return (0);
+		}
+		i++;
+		j--;
+	}
+	free(arr);
 	return (1);
 }
