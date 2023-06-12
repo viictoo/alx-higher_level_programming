@@ -9,35 +9,25 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *hare = *head, *kobe = *head;
-	int len = 0, count = 0;
-
-	if (head == NULL)
-		return (0);
-
-	if (!(*head))
-		return (1);
+	listint_t *kobe = *head, *hare = *head;
+	listint_t *prev = NULL, *next = NULL;
 
 	while (hare && hare->next)
 	{
-		kobe = kobe->next;
 		hare = hare->next->next;
-		len++;
+		next = kobe->next;
+		kobe->next = prev;
+		prev = kobe;
+		kobe = next;
 	}
-	if (len % 2 != 0)
-		len--;
-	while (kobe)
+	if (hare)
+		kobe = kobe->next;
+
+	while (prev && kobe)
 	{
-		hare = *head;
-		len--;
-		count = len;
-		while (count >= 0)
-		{
-			hare = hare->next;
-			count--;
-		}
-		if (hare->n != kobe->n)
+		if (prev->n != kobe->n)
 			return (0);
+		prev = prev->next;
 		kobe = kobe->next;
 	}
 	return (1);
