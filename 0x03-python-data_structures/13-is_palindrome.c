@@ -9,43 +9,36 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *kobe;
-	int len = 0, i, j, *arr = NULL;
+	listint_t *hare = *head, *kobe = *head;
+	int len = 0, count = 0;
 
-	if (!head)
+	if (head == NULL)
 		return (0);
+
 	if (!(*head))
 		return (1);
 
-	kobe = *head;
+	while (hare && hare->next)
+	{
+		kobe = kobe->next;
+		hare = hare->next->next;
+		len++;
+	}
+	if (len % 2 != 0)
+		len--;
 	while (kobe)
 	{
-		len++;
-		kobe = kobe->next;
-	}
-	arr = malloc(sizeof(int) * len);
-	if (arr == NULL)
-	{
-		exit(1);
-	}
-	kobe = *head;
-	for (i = 0; i < len; i++)
-	{
-		arr[i] = kobe->n;
-		kobe = kobe->next;
-	}
-	i = 0;
-	j = len - 1;
-	while (i < j)
-	{
-		if (arr[i] != arr[j])
+		hare = *head;
+		len--;
+		count = len;
+		while (count >= 0)
 		{
-			free(arr);
-			return (0);
+			hare = hare->next;
+			count--;
 		}
-		i++;
-		j--;
+		if (hare->n != kobe->n)
+			return (0);
+		kobe = kobe->next;
 	}
-	free(arr);
 	return (1);
 }
