@@ -1,0 +1,139 @@
+======================
+0. Integer addition
+======================
+
+import module as a()
+========================
+
+>>> a = __import__('0-add_integer').add_integer
+
+TEST CASES : SUCCESS
+
+addition of integers, floats and negative numbers
+=================================================
+
+    >>> a(1, 2)
+    3
+    >>> a(-1, 4)
+    3
+    >>> a(1.1, 2)
+    3
+    >>> a(4, -1.999)
+    3
+    >>> a(-95.1, 98.99)
+    3
+
+default value of second arg b
+==============================
+
+    >>> a(-95)
+    3
+
+TEST CASES: RAISE ERROR
+
+No parameters
+===============
+    >>> a()
+    Traceback (most recent call last):
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Passing None as first argument
+==============================
+    >>> a(None)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Passing None as second argument
+===============================
+    >>> a(1, None)
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+Passing bool as first argument
+==============================
+    >>> a(True)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Passing bool as second argument
+===============================
+    >>> a(1, True)
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+
+Passing string as first argument
+==============================
+    >>> a('True')
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Passing string as second argument
+===============================
+    >>> a(1, 'True')
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+Passing very large float as first argument
+==========================================
+    >>> a(1e400, 2)
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+Passing very large float as second argument
+===========================================
+    >>> a(1, 1e400)
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+TEST CASE: WRONG DATA TYPE
+
+Passing list as args
+====================
+    >>> a([1,2,3], 1)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> a(1, [1,2,3])
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+Passing a Tuple as args
+=======================
+    >>> a((1,2), 1)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> a(1, (1,2))
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+Passing too many args
+=====================
+    >>> a(1, 2, 3)
+    Traceback (most recent call last):
+    TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+TEST CASE: SPECIAL NUMBERS
+
+Passing infinity as arg(inf is infinity)
+======================================
+    >>> a(float("inf"))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+Passing - infinity as arg(inf is infinity)
+======================================
+    >>> a(float("-inf"))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+Passing Complex Numbers as args
+=======================
+    >>> a(3 + 2j)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> a(1, 3 + 2j)
+    Traceback (most recent call last):
+    TypeError: b must be an integer

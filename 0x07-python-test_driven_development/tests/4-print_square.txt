@@ -1,0 +1,101 @@
+==================================================
+4. TESTS FOR print_square MODULE
+THIS CODE WILL BE COMPILED WITH
+python3 -m doctest -v ./tests/4-print_square.txt
+==================================================
+
+IMPORT THE CODE TO TEST
+=============================
+    >>> print_square = __import__('4-print_square').print_square
+
+
+TEST : SUCCESS
+
+CASE: POSITIVE INT parameter
+=============================
+
+case: zero as parameter
+
+    >>> print_square(0)
+
+
+case: 3 as parameter
+
+    >>> print_square(3)
+    ###
+    ###
+    ###
+
+case: 15 as parameter( bigger int)
+
+    >>> print_square(15)
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+    ###############
+
+
+TEST CASE: TypeError
+=========================
+
+case: float parameter
+
+    >>> print_square(1.1)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+case: big negative float parameter
+
+    >>> print_square(-1e300)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+case: infinite float parameter
+
+    >>> print_square(float("inf"))
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+case: bool as parameter
+
+    >>> print_square(True)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+case: string as parameter
+
+    >>> print_square('Matrix grid')
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+case: none as parameter
+
+    >>> print_square(None)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+case: no parameters
+
+    >>> print_square()
+    Traceback (most recent call last):
+    TypeError: print_square() missing 1 required positional argument: 'size'
+
+
+TEST CASE: ValueError
+====================
+case: negative integer parameter
+
+    >>> print_square(-50)
+    Traceback (most recent call last):
+    ValueError: size must be >= 0

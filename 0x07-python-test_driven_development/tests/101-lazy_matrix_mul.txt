@@ -1,0 +1,98 @@
+==========================
+TESTS FOR THE matrix_mul MODULE
+THIS CODE WILL BE COMPILED WITH:
+python3 -m doctest -v ./tests/100-matrix_mul.txt
+==========================
+
+IMPORT THE MODULE
+=================
+
+    >>> matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+TEST CASE: SUCCESS
+
+PROD OF TWO MATRICES
+matrix as a list of lists
+consisting of integers and float values
+(signed and unsigned)
+====================
+
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+    array([[ 7, 10],
+           [15, 22]])
+
+    >>> matrix_mul([[1.1, -2.2], [-5.5111111, 6]], [[2, 3], [4, -7]])
+    array([[ -6.6      ,  18.7      ],
+           [ 12.9777778, -58.5333333]])
+
+TEST CASE: ERROR
+================
+
+NO ARGS
+=======
+    >>> matrix_mul()
+    Traceback (most recent call last):
+    TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+PASSING ONLY ONE PARAMETER
+==========================
+    >>> matrix_mul([[6, 3, 2], [9, 2, 1 ]])
+    Traceback (most recent call last):
+    TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+NON LIST VALUES AS PARAMETERS
+==================================
+    >>> matrix_mul([[3, 6]], 9)
+    Traceback (most recent call last):
+    ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+
+    >>> matrix_mul("hey young world", [[1, 2]])
+    Traceback (most recent call last):
+    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U15'), dtype('int64')) -> None
+
+    >>> matrix_mul(["Monty", "Python"], [[1, 2]])
+    Traceback (most recent call last):
+    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U6'), dtype('int64')) -> None
+
+    >>> matrix_mul([[1, 2]], ["Monty", "Python"])
+    Traceback (most recent call last):
+    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U6')) -> None
+
+EMPTY LIST
+==========
+
+    >>> matrix_mul([], [[9, 4]])
+    Traceback (most recent call last):
+    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+
+    >>> matrix_mul([[9, 4]], [[]])
+    Traceback (most recent call last):
+    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+NON INT/FLOAT VALUES IN LIST
+============================
+
+    >>> matrix_mul([[1, 2], ["multiplied", 9]], [[9, 4], [2, 5]])
+    Traceback (most recent call last):
+    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U21'), dtype('int64')) -> None
+
+    >>> matrix_mul([[9, 4], [2, 5]], [[1, 2], ["multiplied", 9]])
+    Traceback (most recent call last):
+    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U21')) -> None
+
+IRREGULAR SIZED MATRIX
+======================
+    >>> matrix_mul([[1, 1], [2]], [[1, 1], [2, 2]])
+    Traceback (most recent call last):
+    ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+    >>> matrix_mul([[1, 1], [2, 2]], [[1], [2, 2]])
+    Traceback (most recent call last):
+    ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+MATRIX m_a IS BIGGER THAN MATRIX m_b
+====================================
+    >>> matrix_mul([[9, 4, 4], [2, 8, 2]], [[1, 2], [4, 9]])
+    Traceback (most recent call last):
+    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+

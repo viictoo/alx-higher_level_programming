@@ -1,0 +1,150 @@
+==================================================
+2. TESTS FOR matrix_divided MODULE
+THIS CODE WILL BE COMPILED WITH
+python3 -m doctest -v ./tests/2-matrix_divided.txt
+==================================================
+
+IMPORT THE CODE TO TEST AS md
+=============================
+
+>>> md = __import__('2-matrix_divided').matrix_divided
+
+TEST CASE: SUCCESS
+
+unsigned, signed, unsigned and signed floats in matrix
+===============================================
+
+    >>> matrix = [[1, 2, 3],[4, 5, 6]]
+    >>> md(matrix, 3)
+    [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+    >>> matrix = [[-1, -2, -3],[4, 5, -6]]
+    >>> md(matrix, 3)
+    [[-0.33, -0.67, -1.0], [1.33, 1.67, -2.0]]
+
+    >>> matrix = [[1.2, 2.2, 3.3],[4, 5, 6.9]]
+    >>> md(matrix, 3)
+    [[0.4, 0.73, 1.1], [1.33, 1.67, 2.3]]
+
+    >>> matrix = [[-6.9, 2.2, 3.3],[-4, 5, -6.9]]
+    >>> md(matrix, 3)
+    [[-2.3, 0.73, 1.1], [-1.33, 1.67, -2.3]]
+
+
+unsigned, signed, unsigned and signed floats in divisor
+===============================================
+
+    >>> matrix = [[1, 2, 3],[4, 5, 6]]
+    >>> md(matrix, 3)
+    [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+    >>> md(matrix, -3)
+    [[-0.33, -0.67, -1.0], [-1.33, -1.67, -2.0]]
+
+    >>> md(matrix, 3.222)
+    [[0.31, 0.62, 0.93], [1.24, 1.55, 1.86]]
+
+    >>> md(matrix, -0.3)
+    [[-3.33, -6.67, -10.0], [-13.33, -16.67, -20.0]]
+
+    >>> md(matrix, float("inf"))
+    [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+
+
+=================================================
+TEST CASE: TYPE ERROR
+
+case: different data types in matrix
+====================================
+    >>> matrix = [[1, 2, "hello world"],[4, 5, 6]]
+    >>> md(matrix, 3)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = [[(1, 3), 2, 3],[4, 5, 6]]
+    >>> md(matrix, 3)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix = [[1, 2, 3], {"dict" : 4}]
+    >>> md(matrix, 3)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+    >>> matrix = 9
+    >>> md(matrix, 3)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+case: inconsistent row sizes in matrix
+======================================
+    >>> matrix = [[1], [1, 3, 2, 3]]
+    >>> md(matrix, 3)
+    Traceback (most recent call last):
+    TypeError: Each row of the matrix must have the same size
+
+    >>> matrix = [[1, 3, 2, 3],[4, 5, 6]]
+    >>> md(matrix, 3)
+    Traceback (most recent call last):
+    TypeError: Each row of the matrix must have the same size
+
+case: different data types in divisor
+=====================================
+    >>> matrix = [[1, 2, 3],[4, 5, 6]]
+    >>> md(matrix, "3")
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+    >>> md(matrix, "hello")
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+    >>> md(matrix, [1, 2])
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+    >>> md(matrix, matrix)
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+    >>> md(matrix, (3, 1))
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+    >>> md(matrix, {'key', 1})
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+TEST CASE: DIVISION BY ZERO
+===========================
+
+    >>> matrix = [[1, 2, 3],[4, 5, 6]]
+    >>> md(matrix, 0)
+    Traceback (most recent call last):
+    ZeroDivisionError: division by zero
+
+
+TEST CASE: ARGS
+===============
+case: too many args
+===================
+    >>> matrix = [[1, 2, 3],[4, 5, 6]]
+    >>> md(matrix, 1, 1)
+    Traceback (most recent call last):
+    TypeError: matrix_divided() takes 2 positional arguments but 3 were given
+
+
+case: too few args
+==================
+    >>> matrix = [[1, 2, 3],[4, 5, 6]]
+    >>> md(matrix)
+    Traceback (most recent call last):
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+case: no args
+==================
+    >>> md()
+    Traceback (most recent call last):
+    TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'

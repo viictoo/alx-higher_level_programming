@@ -1,0 +1,61 @@
+==================================================
+5. TESTS FOR text_indentation MODULE
+THIS CODE WILL BE COMPILED WITH
+python3 -m doctest -v ./tests/5-text_indentation.txt
+==================================================
+
+IMPORT THE CODE TO TEST AS psq
+=============================
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+TEST: SUCCESS
+=============
+
+case: convert . : ? in a string to newline and remove spaces after these characters
+===================================================================================
+    >>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit.beatiorem? Iam ruinas: videres")
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <BLANKLINE>
+    beatiorem?
+    <BLANKLINE>
+    Iam ruinas:
+    <BLANKLINE>
+    videres
+
+case: text surrounded by spaces
+==============================
+
+    >>> text_indentation("          Lorem ipsum dolor sit amet, consectetur adipiscing elit.beatiorem? Iam ruinas: videres          ")
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <BLANKLINE>
+    beatiorem?
+    <BLANKLINE>
+    Iam ruinas:
+    <BLANKLINE>
+    videres
+
+case: text with internal spaces
+===============================
+    >>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit           .beatiorem?       Iam ruinas:            videres")
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <BLANKLINE>
+    beatiorem?
+    <BLANKLINE>
+    Iam ruinas:
+    <BLANKLINE>
+    videres
+
+
+TEST CASE: ERROR (TypeError)
+================
+
+CASE: no parameter
+    >>> text_indentation()
+    Traceback (most recent call last):
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+CASE: Non string parameter
+
+    >>> text_indentation(1)
+    Traceback (most recent call last):
+    TypeError: text must be a string

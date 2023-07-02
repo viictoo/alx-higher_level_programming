@@ -1,0 +1,61 @@
+==================================================
+3. TESTS FOR say_my_name MODULE
+THIS CODE WILL BE COMPILED WITH
+python3 -m doctest -v ./tests/3-say_my_name.txt
+==================================================
+
+IMPORT THE CODE TO TEST AS smn
+=============================
+    >>> smn = __import__('3-say_my_name').say_my_name
+
+TEST CASE: SUCCESS
+
+"Pablo Picasso"
+=========================
+
+case: print first name
+
+    >>> smn("Pablo")
+    My name is Pablo 
+
+case: print a full name
+
+    >>> smn("Pablo", "Picasso")
+    My name is Pablo Picasso
+
+case: empty parameters
+
+    >>> smn("", )
+    My name is  
+
+case: medium spaces
+
+    >>> smn(" ", "          Pablo            ")
+    My name is             Pablo            
+
+case: small spaces
+
+    >>> smn(" ", " ")
+    My name is    
+
+
+TEST CASE: ERROR
+================
+
+case: NO parameters
+
+    >>> smn()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+case: integer as parameter
+
+    >>> smn(12, "Picasso")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+case: A test case with the last name as integer
+
+    >>> smn("Pablo", 12)
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
