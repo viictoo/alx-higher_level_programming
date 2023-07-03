@@ -61,11 +61,10 @@ def print_nqueens(board):
     """
     solution = []
     for i in range(N):
-        row = []
         for j in range(N):
             if board[i][j] == 1:
-                row.append([i, j])
-        solution.append(row)
+                solution.append([i, j])
+
     print(solution)
 
 
