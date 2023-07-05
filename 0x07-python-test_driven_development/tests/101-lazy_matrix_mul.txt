@@ -52,7 +52,7 @@ NON LIST VALUES AS PARAMETERS
 
     >>> matrix_mul(["Monty", "Python"], [[1, 2]])
     Traceback (most recent call last):
-    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U6'), dtype('int64')) -> None
+    ValueError: shapes (2,) and (1,2) not aligned: 2 (dim 0) != 1 (dim 0)
 
     >>> matrix_mul([[1, 2]], ["Monty", "Python"])
     Traceback (most recent call last):
