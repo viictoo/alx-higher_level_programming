@@ -1,6 +1,7 @@
 ======================
 0. Integer addition
 ======================
+python3 -m doctest -v ./tests/0-add_integer.txt
 
 import module as a()
 ========================
@@ -137,3 +138,15 @@ Passing Complex Numbers as args
     >>> a(1, 3 + 2j)
     Traceback (most recent call last):
     TypeError: b must be an integer
+
+case: convert float NaN to integer
+==================================
+    >>> a(1, float("NaN"))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
+
+    >>> a(float('NaN'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
+
+

@@ -44,11 +44,11 @@ NON LIST VALUES AS PARAMETERS
 ==================================
     >>> matrix_mul([[3, 6]], 9)
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+    ValueError: Scalar operands are not allowed, use '*' instead
 
     >>> matrix_mul("hey young world", [[1, 2]])
     Traceback (most recent call last):
-    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U15'), dtype('int64')) -> None
+    ValueError: Scalar operands are not allowed, use '*' instead
 
     >>> matrix_mul(["Monty", "Python"], [[1, 2]])
     Traceback (most recent call last):
@@ -56,43 +56,47 @@ NON LIST VALUES AS PARAMETERS
 
     >>> matrix_mul([[1, 2]], ["Monty", "Python"])
     Traceback (most recent call last):
-    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U6')) -> None
+    TypeError: invalid data type for einsum
 
 EMPTY LIST
 ==========
 
     >>> matrix_mul([], [[9, 4]])
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+    ValueError: shapes (0,) and (1,2) not aligned: 0 (dim 0) != 1 (dim 0)
 
     >>> matrix_mul([[9, 4]], [[]])
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+    ValueError: shapes (1,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0
+
+    >>> matrix_mul([[3, 6]], 9)
+    Traceback (most recent call last):
+    ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
 
 NON INT/FLOAT VALUES IN LIST
 ============================
 
     >>> matrix_mul([[1, 2], ["multiplied", 9]], [[9, 4], [2, 5]])
     Traceback (most recent call last):
-    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U21'), dtype('int64')) -> None
+    TypeError: invalid data type for einsum
 
     >>> matrix_mul([[9, 4], [2, 5]], [[1, 2], ["multiplied", 9]])
     Traceback (most recent call last):
-    numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U21')) -> None
+    TypeError: invalid data type for einsum
 
 IRREGULAR SIZED MATRIX
 ======================
     >>> matrix_mul([[1, 1], [2]], [[1, 1], [2, 2]])
     Traceback (most recent call last):
-    ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+    ValueError: setting an array element with a sequence.
 
     >>> matrix_mul([[1, 1], [2, 2]], [[1], [2, 2]])
     Traceback (most recent call last):
-    ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+    ValueError: setting an array element with a sequence..
 
 MATRIX m_a IS BIGGER THAN MATRIX m_b
 ====================================
     >>> matrix_mul([[9, 4, 4], [2, 8, 2]], [[1, 2], [4, 9]])
     Traceback (most recent call last):
-    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+    ValueError: shapes (2,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0)
 
