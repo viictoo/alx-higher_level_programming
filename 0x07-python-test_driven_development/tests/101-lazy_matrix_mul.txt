@@ -92,7 +92,7 @@ IRREGULAR SIZED MATRIX
 
     >>> matrix_mul([[1, 1], [2, 2]], [[1], [2, 2]])
     Traceback (most recent call last):
-    ValueError: setting an array element with a sequence..
+    ValueError: setting an array element with a sequence.
 
 MATRIX m_a IS BIGGER THAN MATRIX m_b
 ====================================
