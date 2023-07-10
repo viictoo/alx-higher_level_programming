@@ -33,7 +33,7 @@ CASE: non-implemented area method
 CASE: value is not int
 ======================
     >>> baseG = BaseGeometry()
-    >>> baseG.integer_validator("test", [])
+    >>> baseG.integer_validator("test", [1])
     Traceback (most recent call last):
     ...
     TypeError: test must be an integer
@@ -112,3 +112,19 @@ CASE: Unsupported number of args:
     Traceback (most recent call last):
     ...
     TypeError: area() takes 1 positional argument but 2 were given
+
+TEST CASE: DOCUMENTATION
+========================
+
+    >>> doc = __import__("7-base_geometry").__doc__
+    >>> len(doc) > 0
+    True
+    >>> doc = __import__("7-base_geometry").BaseGeometry.__doc__
+    >>> len(doc) > 0
+    True
+    >>> doc = __import__("7-base_geometry").BaseGeometry.area.__doc__
+    >>> len(doc) > 0
+    True
+    >>> doc = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
+    >>> len(doc) > 0
+    True
