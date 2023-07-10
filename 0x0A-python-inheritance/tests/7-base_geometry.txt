@@ -1,0 +1,96 @@
+This code can be run from the parent directory with
+run test with python3 -m doctest -v ./tests/7-base_geometry.txt
+
+Import the module as BaseGeometry
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+TEST CASE SUCCESS:
+case integer (>0):
+    >>> base_int = BaseGeometry()
+    >>> base_int.integer_validator("number", 42)
+
+TEST CASE ERROR MESSAGE:
+=======================
+    >>> BG_TYPE = BaseGeometry()
+    >>> BG_TYPE.integer_validator("notint", "42")
+    Traceback (most recent call last):
+    ...
+    TypeError: notint must be an integer
+
+    >>> BG_VALUE = BaseGeometry()
+    >>> BG_VALUE.integer_validator("neg", -1)
+    Traceback (most recent call last):
+    ...
+    ValueError: neg must be greater than 0
+
+CASE: non-implemented area method
+    >>> BG_AREA = BaseGeometry()
+    >>> BG_AREA.area()
+    Traceback (most recent call last):
+    ...
+    Exception: area() is not implemented
+
+CASE: value is not int
+======================
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("test", [])
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("test", {"key": 42})
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("bool", True)
+    Traceback (most recent call last):
+    ...
+    TypeError: bool must be an integer
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("test", (1, 2))
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("test", None)
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("test", "string")
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+    >>> bg = BaseGeometry()
+    >>> baseG.integer_validator("test", "50 cent")
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("test", {3, 4})
+    Traceback (most recent call last):
+    ...
+    TypeError: test must be an integer
+
+CASE: Unsupported number of args:
+================================
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("age")
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator()
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'

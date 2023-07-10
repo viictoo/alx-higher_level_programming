@@ -1,0 +1,81 @@
+TEST CASES FOR 1-my_list module
+This code will be run with
+python3 -m doctest -v ./tests/1-my_list.txt
+======================
+
+Importing function from the module as myList:
+>>> myList = __import__("1-my_list").MyList
+
+    TEST CASE: SUCCESS
++++++++++++++++++++++++++
+    >>> test_list = myList()
+	>>> test_list.append(1)
+	>>> test_list.append(20)
+    >>> test_list.append(3)
+    >>> test_list.append(14)
+    >>> print(test_list)
+    [1, 20, 3, 14]
+
+    >>> test_list.print_sorted()
+    [1, 3, 14, 20]
+
+    >>> test_list = myList()
+    >>> test_list.append(44)
+    >>> test_list.append(33)
+    >>> test_list.append(22)
+    >>> test_list.append(1)
+    >>> print(test_list)
+    [44, 33, 22, 1]
+    >>> test_list.print_sorted()
+    [1, 22, 33, 44]
+    >>> print(test_list)
+    [44, 33, 22, 1]
+
+NEG NUMBER IN LIST
+    >>> test_list.append(-float("inf"))
+    >>> test_list.append(float("inf"))
+    >>> print(test_list)
+    [44, 33, 22, 1, -inf, inf]
+    >>> test_list.print_sorted()
+    [-inf, 1, 22, 33, 44, inf]
+    >>> print(test_list)
+    [44, 33, 22, 1, -inf, inf]
+
+    >>> test_list = myList()
+    >>> test_list.append(-44)
+    >>> test_list.append(-33)
+    >>> test_list.append(-22)
+    >>> test_list.append(-1)
+    >>> print(test_list)
+    [-44, -33, -22, -1]
+    >>> test_list.print_sorted()
+    [-44, -33, -22, -1]
+    >>> print(test_list)
+    [-44, -33, -22, -1]
+
+TEST ARG COUNT:
+===============
+NO ARGS
+    >>> test_list = myList()
+    >>> test_list.print_sorted()
+    []
+
+1 ARG
+    >>> test_list.print_sorted(1)
+    Traceback (most recent call last):
+    ...
+    TypeError: MyList.print_sorted() takes 1 positional argument but 2 were given
+
+    INHERITANCE
+    ===========
+    >>> type(myList())
+    <class '1-my_list.MyList'>
+
+    >>> isinstance(myList, object)
+    True
+
+    >>> issubclass(myList, list)
+    True
+
+    >>> isinstance(myList, list)
+    False
