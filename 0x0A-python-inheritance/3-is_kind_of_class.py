@@ -6,6 +6,6 @@ otherwise False
 """
 
 
-def inherits_from(obj, a_class):
-    """using instance"""
+def is_kind_of_class(obj, a_class):
+    """using instance to determine inheritance of object"""
     return isinstance(obj, a_class)
