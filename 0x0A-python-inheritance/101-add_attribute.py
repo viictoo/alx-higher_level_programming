@@ -2,6 +2,7 @@
 """module to add attribute
 """
 
+
 def add_attribute(obj, new, value):
     """a function that adds a new attribute to an object if it is possible
 
