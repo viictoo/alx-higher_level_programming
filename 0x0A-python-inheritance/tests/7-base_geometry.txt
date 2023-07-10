@@ -1,11 +1,11 @@
 This code can be run from the parent directory with
-run test with python3 -m doctest -v ./tests/7-base_geometry.txt
+python3 -m doctest -v ./tests/7-base_geometry.txt
 
 Import the module as BaseGeometry
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 TEST CASE SUCCESS:
-case integer (>0):
+case integer (>0)
     >>> base_int = BaseGeometry()
     >>> base_int.integer_validator("number", 42)
 
@@ -94,3 +94,21 @@ CASE: Unsupported number of args:
     Traceback (most recent call last):
     ...
     TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.integer_validator("name", "value", "other", 4)
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() takes 3 positional arguments but 5 were given
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.area(1, 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: area() takes 1 positional argument but 3 were given
+
+    >>> baseG = BaseGeometry()
+    >>> baseG.area(3)
+    Traceback (most recent call last):
+    ...
+    TypeError: area() takes 1 positional argument but 2 were given
