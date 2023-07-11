@@ -29,20 +29,19 @@ if __name__ == "__main__":
             if line_number % 10 == 0:
                 print_status_code()
 
-            elements = line.split()
+            line = line.split()
 
             try:
-                size += int(elements[-1])
+                size += int(line[-1])
             except (IndexError, ValueError):
                 pass
 
             try:
-                status_code = elements[-2]
-                if status_code in valid_codes:
-                    status_codes[status_code] = status_codes.get(status_code,
-                                                                 0) + 1
-                else:
-                    status_codes[line[-2]] += 1
+                if line[-2] in valid_codes:
+                    if status_codes.get(line[-2], -1) == -1:
+                        status_codes[line[-2]] = 1
+                    else:
+                        status_codes[line[-2]] += 1
             except IndexError:
                 pass
 
