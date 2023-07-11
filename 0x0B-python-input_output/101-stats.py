@@ -8,7 +8,13 @@
 import sys
 
 
-def print_stats(size, status_codes):
+size = 0
+status_codes = {}
+valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
+count = 0
+
+
+def print_stats():
     """Print accumulated metrics.
 
     Args:
@@ -20,15 +26,10 @@ def print_stats(size, status_codes):
         print("{}: {}".format(key, status_codes[key]))
 
 
-size = 0
-status_codes = {}
-valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
-count = 0
-
 try:
     for line in sys.stdin:
         if count == 10:
-            print_stats(size, status_codes)
+            print_stats()
             count = 1
         else:
             count += 1
@@ -49,8 +50,8 @@ try:
         except IndexError:
             pass
 
-    print_stats(size, status_codes)
+    print_stats()
 
 except KeyboardInterrupt:
-    print_stats(size, status_codes)
+    print_stats()
     raise
