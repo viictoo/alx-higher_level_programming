@@ -14,7 +14,7 @@ valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
 count = 0
 
 
-def print_stats():
+def print_status_code():
     """Print accumulated metrics.
 
     Args:
@@ -29,7 +29,7 @@ def print_stats():
 try:
     for line in sys.stdin:
         if count == 10:
-            print_stats()
+            print_status_code()
             count = 1
         else:
             count += 1
@@ -40,18 +40,17 @@ try:
             size += int(elements[-1])
         except (IndexError, ValueError):
             pass
-
         try:
-            if elements[-2] in valid_codes:
-                if status_codes.get(elements[-2], -1) == -1:
-                    status_codes[elements[-2]] = 1
+            status_code = elements[-2]
+            if status_code in valid_codes:
+                if status_code not in status_codes:
+                    status_codes[status_code] = 1
                 else:
-                    status_codes[elements[-2]] += 1
+                    status_codes[status_code] += 1
         except IndexError:
             pass
-
-    print_stats()
+    print_status_code()
 
 except KeyboardInterrupt:
-    print_stats()
+    print_status_code()
     raise
