@@ -7,20 +7,25 @@
     (CTRL + C), prints those statistics since the beginning: """
 import sys
 
-
 size = 0
 status_codes = {}
 valid_codes = {'200', '301', '400', '401', '403', '404', '405', '500'}
 line_number = 0
 
+
+def print_status_code():
+    """prints stats
+    """
+    print("File size:", size)
+    for key in sorted(status_codes):
+        print(key + ":", status_codes[key])
+
+
 try:
     for line in sys.stdin:
         line_number += 1
-        if line_number == 10:
-            print("File size:", size)
-            for key in sorted(status_codes):
-                print(key + ":", status_codes[key])
-            line_number = 0
+        if line_number % 10 == 0:
+            print_status_code()
 
         elements = line.split()
 
@@ -37,12 +42,8 @@ try:
         except IndexError:
             pass
 
-    print("File size:", size)
-    for key in sorted(status_codes):
-        print(key + ":", status_codes[key])
+    print_status_code()
 
 except KeyboardInterrupt:
-    print("File size:", size)
-    for key in sorted(status_codes):
-        print(key + ":", status_codes[key])
+    print_status_code()
     raise
