@@ -16,9 +16,9 @@ line_number = 0
 def print_status_code():
     """prints stats
     """
-    print("File size: {}".format(size))
+    print("File size:", size)
     for key in sorted(status_codes):
-        print("{}: {}".format(key, status_codes[key]))
+        print(key + ":", status_codes[key])
 
 
 if __name__ == "__main__":
@@ -41,6 +41,8 @@ if __name__ == "__main__":
                 if status_code in valid_codes:
                     status_codes[status_code] = status_codes.get(status_code,
                                                                  0) + 1
+                else:
+                    status_codes[line[-2]] += 1
             except IndexError:
                 pass
 
