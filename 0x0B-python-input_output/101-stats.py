@@ -36,7 +36,10 @@ try:
 
         line = line.split()
 
-        size += int(line[-1])
+        try:
+            size += int(line[-1])
+        except (IndexError, ValueError):
+            pass
 
         try:
             if line[-2] in valid_codes:
