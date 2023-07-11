@@ -28,6 +28,7 @@ try:
     for line in sys.stdin:
         if count == 10:
             print_status_code()
+            count = 1
         else:
             count += 1
 
