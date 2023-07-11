@@ -16,9 +16,9 @@ line_number = 0
 def print_status_code():
     """prints stats
     """
-    print("File size:", size)
+    print("File size: {}".format(size))
     for key in sorted(status_codes):
-        print(key + ":", status_codes[key])
+        print("{}: {}".format(key, status_codes[key]))
 
 
 if __name__ == "__main__":
