@@ -41,13 +41,19 @@ try:
         except (IndexError, ValueError):
             pass
         try:
+            # Get the second-to-last element of `elements` as `status_code`
             status_code = elements[-2]
             if status_code in valid_codes:
                 if status_code not in status_codes:
+                    # If `status_code` is not in `status_codes`,
+                    # add it as a new key with a count of 1
                     status_codes[status_code] = 1
                 else:
+                    # If `status_code` is already in `status_codes`,
+                    # increment its count by 1
                     status_codes[status_code] += 1
         except IndexError:
+            # Ignore IndexError if the element doesn't exist
             pass
     print_status_code()
 
