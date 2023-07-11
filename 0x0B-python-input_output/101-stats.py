@@ -5,7 +5,7 @@
     <status code> <file size>
     Each 10 lines and after a keyboard interruption
     (CTRL + C), prints those statistics since the beginning: """
-import sys
+
 
 size = 0
 status_codes = {}
@@ -21,29 +21,31 @@ def print_status_code():
         print(key + ":", status_codes[key])
 
 
-try:
-    for line in sys.stdin:
-        line_number += 1
-        if line_number % 10 == 0:
-            print_status_code()
+if __name__ == "__main__":
+    import sys
+    try:
+        for line in sys.stdin:
+            line_number += 1
+            if line_number % 10 == 0:
+                print_status_code()
 
-        elements = line.split()
+            elements = line.split()
 
-        try:
-            size += int(elements[-1])
-        except (IndexError, ValueError):
-            pass
+            try:
+                size += int(elements[-1])
+            except (IndexError, ValueError):
+                pass
 
-        try:
-            status_code = elements[-2]
-            if status_code in valid_codes:
-                status_codes[status_code] = status_codes.get(status_code,
-                                                             0) + 1
-        except IndexError:
-            pass
+            try:
+                status_code = elements[-2]
+                if status_code in valid_codes:
+                    status_codes[status_code] = status_codes.get(status_code,
+                                                                 0) + 1
+            except IndexError:
+                pass
 
-    print_status_code()
+        print_status_code()
 
-except KeyboardInterrupt:
-    print_status_code()
-    raise
+    except KeyboardInterrupt:
+        print_status_code()
+        raise
