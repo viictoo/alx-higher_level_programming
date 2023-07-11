@@ -26,9 +26,10 @@ def print_status_code():
 
 try:
     for line in sys.stdin:
-        count += 1
-        if count % 10 == 0:
+        if count == 10:
                 print_status_code()
+        else:
+            count += 1
 
         elements = line.split()
         try:
