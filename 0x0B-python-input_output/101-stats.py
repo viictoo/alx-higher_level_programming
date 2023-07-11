@@ -27,7 +27,7 @@ def print_status_code():
 try:
     for line in sys.stdin:
         if count == 10:
-                print_status_code()
+            print_status_code()
         else:
             count += 1
 
