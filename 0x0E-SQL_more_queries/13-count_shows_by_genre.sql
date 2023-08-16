@@ -12,4 +12,9 @@
 --     Results must be sorted in descending order by the number of shows linked
 --     You can use only one SELECT statement
 --     The database name will be passed as an argument of the mysql command
-SELECT name AS "genre", COUNT(name) AS "number_of_shows" FROM tv_genres, tv_show_genres WHERE tv_genres.id = tv_show_genres.genre_id GROUP BY name ORDER BY number_of_shows DESC;
+
+SELECT name AS "genre", COUNT(name) AS "number_of_shows"
+FROM tv_genres, tv_show_genres
+WHERE tv_genres.id = tv_show_genres.genre_id
+GROUP BY name
+ORDER BY number_of_shows DESC;
