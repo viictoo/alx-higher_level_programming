@@ -18,4 +18,5 @@ WHERE
 GROUP BY
     tv_genres.id
 ORDER BY
-    rating DESC;
+    rating DESC,
+    tv_genres.name ASC;
