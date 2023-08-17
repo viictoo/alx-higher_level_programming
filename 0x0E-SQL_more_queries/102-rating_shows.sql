@@ -3,9 +3,15 @@
 --     Each record displays tv_shows.title - rating sum
 --     Results sorted in descending order by the rating
 --     useS only one SELECT statement
-
-SELECT title, SUM(rate) AS rating
-FROM tv_show_ratings, tv_shows
-WHERE tv_shows.id = tv_show_ratings.show_id
-GROUP BY title
-ORDER BY rating DESC;
+SELECT
+    title,
+    SUM(rate) AS rating
+FROM
+    tv_show_ratings,
+    tv_shows
+WHERE
+    tv_shows.id = tv_show_ratings.show_id
+GROUP BY
+    title
+ORDER BY
+    rating DESC;
