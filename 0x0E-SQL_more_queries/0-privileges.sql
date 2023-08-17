@@ -2,7 +2,7 @@
 -- Check if the user exists before revoking privileges
 USE sys;
 DELIMITER //
-CREATE PROCEDURE ModifyUserPrivileges()
+CREATE PROCEDURE ModifyUserPrivilegess()
 BEGIN
     DECLARE user_exists INT DEFAULT 0;
 
@@ -35,7 +35,7 @@ END;
 DELIMITER ;
 
 -- Call the stored procedure
-CALL ModifyUserPrivileges();
+CALL ModifyUserPrivilegess();
 
 -- SHOW GRANTS FOR 'user_0d_1'@'localhost';
 -- SHOW GRANTS FOR 'user_0d_2'@'localhost';
