@@ -12,4 +12,3 @@ for (let i = 3; i < process.argv.length; i++) {
   }
 }
 console.log(num);
-console.log(max);
