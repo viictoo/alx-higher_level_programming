@@ -20,8 +20,9 @@ class State(Base):
     name that represents a column of a string with maximum 128
     characters and cant be null
     """
-    __tablename__ = "states"
+    __tablename__ = 'states'
     id = Column(Integer, nullable=False, primary_key=True)
     name = Column(String(128), nullable=False)
 
-    cities = relationship('City', backref='state')
+    cities = relationship('City', backref='state',
+                          cascade='all, delete-orphan')
