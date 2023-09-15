@@ -14,8 +14,9 @@ if __name__ == '__main__':
         port=3306)
 
     c = db.cursor()
-    c.execute(
-        "SELECT * FROM states where name = %s order by id asc", (argv[4],))
+    q = "SELECT * FROM states where name = '{:s}' \
+      order by id asc".format(argv[4])
+    c.execute(q)
     lines = c.fetchall()
 
     for line in lines:
