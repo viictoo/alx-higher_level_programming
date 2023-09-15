@@ -20,7 +20,8 @@ if __name__ == '__main__':
     lines = c.fetchall()
 
     for line in lines:
-        print(line)
+        if line[1] == argv[4]:
+            print(line)
 
     c.close()
     db.close()
