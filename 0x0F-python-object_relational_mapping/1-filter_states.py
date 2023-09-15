@@ -9,18 +9,18 @@ if __name__ == '__main__':
     db = MySQLdb.connect(
         user=argv[1],
         password=argv[2],
-        db=argv[3],
+        database=argv[3],
         host='localhost',
         port=3306)
 
     c = db.cursor()
-    c.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    c.execute("SELECT * FROM states WHERE\
+               name LIKE 'N%' ORDER BY states.id ASC")
     lines = c.fetchall()
 
     for line in lines:
         if line[1][0] == 'N':
-           print(line)
-        # print(line)
+            print(line)
 
     c.close()
     db.close()
