@@ -14,7 +14,7 @@ if __name__ == '__main__':
         port=3306)
 
     c = db.cursor()
-    q = "SELECT * FROM states where name = '{:s}' \
+    q = "SELECT * FROM states where name LIKE '{:s}' \
       order by id asc".format(argv[4])
     c.execute(q)
     lines = c.fetchall()
