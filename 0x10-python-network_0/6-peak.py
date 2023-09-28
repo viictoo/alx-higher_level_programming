@@ -1,19 +1,22 @@
 #!/usr/bin/python3
-""" get the max int in a list """
+""" get the peak int in a list """
 
 
 def find_peak(list_of_integers):
-    """ method to get the peak """
-    if (len(list_of_integers) == 0):
+    """ get highest number in set """
+    
+    if len(list_of_integers) == 0:
         return None
-    ll = 0
-    rr = len(list_of_integers) - 1
 
-    while ll < rr:
-        ml = (ll + rr) // 2
+    if len(list_of_integers) == 1:
+        return list_of_integers[0]
+    size = len(list_of_integers)
 
-        if list_of_integers[ml] < list_of_integers[rr]:
-            ll = ml + 1
-        else:
-            rr = ml
-    return list_of_integers[ll]
+    mid = size // 2
+    peak = list_of_integers[mid]
+    if (peak > list_of_integers[mid - 1]) and (peak > list_of_integers[mid + 1]):
+        return peak
+    elif (peak < list_of_integers[mid - 1]):
+        return find_peak(list_of_integers[:mid])
+    else:
+        return find_peak(list_of_integers[mid + 1:])
