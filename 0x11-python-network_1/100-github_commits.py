@@ -11,10 +11,7 @@ if __name__ == "__main__":
     OWNER = argv[1]
     REPO = argv[2]
     url = f"https://api.github.com/repos/{OWNER}/{REPO}/commits"
-    req = requests.get(url, headers={
-            "Content-Type": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28",
-            })
+    req = requests.get(url)
 
     data = req.json()
 
