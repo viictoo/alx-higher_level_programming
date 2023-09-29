@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     commits = []
     for key in data:
-        commits.append("{} : {}".format(
+        commits.append("{}: {}".format(
                 key.get('sha'),
                 key.get('commit').get('author').get('name')))
 
