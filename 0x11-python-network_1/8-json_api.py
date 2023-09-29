@@ -16,7 +16,7 @@ if __name__ == "__main__":
     res = req.json()
     if res != {}:
         try:
-            print(f"[{res['id']}] {res['name']}")
+            print(f"[{res.get('id')}] {res.get('name')}")
         except Exception:
             print("Not a valid JSON")
     else:
