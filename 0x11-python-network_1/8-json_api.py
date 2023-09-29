@@ -16,7 +16,10 @@ if __name__ == "__main__":
     res = req.json()
     if res:
         try:
-            print(f"[{res.get('id')}] {res.get('name')}")
+            if (res.get('id')) is None or (res.get('name')) is None:
+                print("Not a valid JSON")
+            else:
+                print(f"[{res.get('id')}] {res.get('name')}")
         except ValueError:
             print("Not a valid JSON")
     else:
