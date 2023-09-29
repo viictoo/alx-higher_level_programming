@@ -15,11 +15,7 @@ if __name__ == "__main__":
 
     data = req.json()
 
-    commits = []
-    for key in data:
-        commits.append("{}: {}".format(
+    for key in data[0:10]:
+        print("{}: {}".format(
                 key.get('sha'),
                 key.get('commit').get('author').get('name')))
-
-    for item in commits[:10]:
-        print(item)
