@@ -14,10 +14,10 @@ if __name__ == "__main__":
 
     req = requests.post(url, data={"q": letter})
     res = req.json()
-    if res != {}:
+    if res:
         try:
             print(f"[{res.get('id')}] {res.get('name')}")
-        except Exception:
+        except ValueError:
             print("Not a valid JSON")
     else:
         print("No result")
