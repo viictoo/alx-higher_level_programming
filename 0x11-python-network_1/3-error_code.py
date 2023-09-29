@@ -13,7 +13,7 @@ if __name__ == "__main__":
             response = response.read()
             print(response.decode('utf-8'))
     except error.HTTPError as eh:
-        print("Error code: ", eh.code)
-    except error.URLError as e:
-        e = e.read()
-        print(e.decode())
+        print(f"Error code: {eh.code}")
+    # except error.URLError as e:
+    #     e = e.read()
+    #     print(e.decode())
