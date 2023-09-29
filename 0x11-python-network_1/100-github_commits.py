@@ -9,7 +9,7 @@ REPO = argv[2]
 url = f"https://api.github.com/repos/{OWNER}/{REPO}/commits"
 
 req = requests.get(url, headers={
-        "Content-Type": "application/vnd.github+json", 
+        "Content-Type": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
         })
 
@@ -20,6 +20,5 @@ for key in data:
     if 'commit' in key:
         commits.append(f"{key['sha']}: {key['commit']['author']['name']}")
 
-for item in commits[-10:]:
+for item in commits[:10]:
     print(item)
-
