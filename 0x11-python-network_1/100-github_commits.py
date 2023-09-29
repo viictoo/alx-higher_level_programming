@@ -21,7 +21,9 @@ if __name__ == "__main__":
     commits = []
     for key in data:
         if 'commit' in key:
-            commits.append(f"{key['sha']}: {key['commit']['author']['name']}")
+            commits.append("{} : {}".format(
+                key.get('sha'),
+                key.get('commit').get('author').get('name')))
 
     for item in commits[:10]:
         print(item)
