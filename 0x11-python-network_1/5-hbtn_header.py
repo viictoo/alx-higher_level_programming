@@ -1,12 +1,16 @@
-#!/usr/bin/env python3
-""" get last 10 commits from repo """
+#!/usr/bin/python3
+""" takes in a URL, sends a request to the URL
+and displays the value of the variable X-Request-Id in the response header
+./5-hbtn_header.py https://alx-intranet.hbtn.io
+ """
 import requests
 from sys import argv
 
 
-url = argv[1]
+if __name__ == "__main__":
+    url = argv[1]
 
-req = requests.get(url)
-data = req.headers['X-Request-Id']
+    req = requests.get(url)
+    header = req.headers['X-Request-Id']
 
-print(data)
+    print(header)

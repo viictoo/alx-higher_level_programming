@@ -3,8 +3,10 @@
 """
 from flask import Flask, Response, request, redirect, url_for
 from flask import jsonify
-import random, string
+import random
+import string
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
@@ -44,7 +46,8 @@ def search_user():
             if len(q) > 0:
                 if ord(q[0]) in range(97, 123):
                     first_letter = q[0]
-                    data['name'] = '{}{}'.format(q, string_generator(10, string.ascii_lowercase))
+                    data['name'] = '{}{}'.format(
+                        q, string_generator(10, string.ascii_lowercase))
                     data['id'] = random.randrange(0, 10001, 2)
     res = jsonify(data)
     res.headers['Content-Type'] = 'application/json'
