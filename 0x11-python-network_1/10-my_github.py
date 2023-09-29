@@ -5,12 +5,13 @@ from sys import argv
 from requests.auth import HTTPBasicAuth
 
 
-OWNER = argv[1]
-PASSWORD = argv[2]
-url = f"https://api.github.com/user"
+if __name__ == "__main__":
+    OWNER = argv[1]
+    PASSWORD = argv[2]
+    url = f"https://api.github.com/user"
 
-req = requests.get(url, auth=HTTPBasicAuth(OWNER, PASSWORD))
+    req = requests.get(url, auth=HTTPBasicAuth(OWNER, PASSWORD))
 
-data = req.json()
-print(req.json().get('id'))
-print(data)
+    data = req.json()
+    print(req.json().get('id'))
+    print(data)
