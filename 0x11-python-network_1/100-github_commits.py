@@ -8,8 +8,8 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    OWNER = argv[1]
-    REPO = argv[2]
+    REPO = argv[1]
+    OWNER = argv[2]
     url = f"https://api.github.com/repos/{OWNER}/{REPO}/commits"
     req = requests.get(url)
 
