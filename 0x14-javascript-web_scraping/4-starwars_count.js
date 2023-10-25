@@ -10,9 +10,14 @@ request(url, (err, response, body) => {
   } else {
     const results = JSON.parse(body).results;
     const count = results.reduce((total, film) => {
+	//console.log(total)
+	 //   console.log(film)
+
       const characters = film.characters;
+	   // console.log(characters)
       const matchingCharacters = characters.filter(character => character.includes('/18/'));
-      return total + matchingCharacters.length;
+	 //   console.log(total)
+	return total + matchingCharacters.length;
     }, 0);
 
     console.log(count);

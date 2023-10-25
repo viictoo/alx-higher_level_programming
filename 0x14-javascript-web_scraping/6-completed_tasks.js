@@ -1,9 +1,10 @@
 #!/usr/bin/node
 // request and fetch API
+// ./6-completed_tasks.js https://jsonplaceholder.typicode.com/todos
 const request = require('request');
 
-request(process.argv[2], function (error, response, body) {
-  if (!error) {
+request(process.argv[2], (error, response, body) => {
+  if (error) { console.error("error") }
     const todos = JSON.parse(body);
     const completed = {};
 
@@ -13,5 +14,4 @@ request(process.argv[2], function (error, response, body) {
       } else if (todo.completed) { completed[todo.userId] += 1; }
     });
     console.log(completed);
-  }
 });
